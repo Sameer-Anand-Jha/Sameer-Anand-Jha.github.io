@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sameer Anand Jha — AI Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0d0d0f;
+    --bg2: #14141a;
+    --bg3: #1c1c26;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --text: #e8e6f0;
+    --muted: #8a86a0;
+    --accent: #7c6ff5;
+    --accent2: #a99ff8;
+    --accent-bg: rgba(124,111,245,0.12);
+    --green: #3ecf8e;
+    --green-bg: rgba(62,207,142,0.1);
+    --amber: #f5a623;
+    --amber-bg: rgba(245,166,35,0.1);
+    --sans: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent2); text-decoration: none; }
+  a:hover { color: #fff; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13,13,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 56px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-name {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--accent2);
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 1.5rem; }
+  .nav-links a {
+    font-size: 13px;
+    color: var(--muted);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* LAYOUT */
+  main { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+  section { padding: 5rem 0 2rem; }
+
+  /* HERO */
+  #hero {
+    padding-top: 8rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .hero-name {
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  .hero-name span { color: var(--accent2); }
+  .hero-bio {
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 580px;
+    line-height: 1.8;
+    margin-bottom: 1.8rem;
+  }
+  .hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+  .hero-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border: 1px solid var(--border2);
+    border-radius: 6px;
+    font-size: 13px;
+    color: var(--muted);
+    transition: all 0.2s;
+  }
+  .hero-links a:hover {
+    border-color: var(--accent);
+    color: var(--accent2);
+    background: var(--accent-bg);
+  }
+  .hero-links a svg { flex-shrink: 0; }
+  .stat-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .stat { }
+  .stat-val {
+    font-family: var(--mono);
+    font-size: 20px;
+    font-weight: 500;
+    color: #fff;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* SECTION HEADERS */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* PUBLICATION BANNER */
+  .pub-banner {
+    background: var(--accent-bg);
+    border: 1px solid rgba(124,111,245,0.25);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+  .pub-icon {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    background: var(--accent-bg);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .pub-title { font-size: 14px; font-weight: 500; color: #fff; margin-bottom: 4px; }
+  .pub-meta { font-size: 12px; color: var(--muted); }
+  .pub-tag {
+    margin-left: 8px;
+    background: var(--accent-bg);
+    color: var(--accent2);
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  /* PROJECTS */
+  .projects-grid { display: flex; flex-direction: column; gap: 1px; }
+  .project-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.4rem 1.5rem;
+    transition: border-color 0.2s, background 0.2s;
+    margin-bottom: 0.75rem;
+  }
+  .project-card:hover {
+    border-color: var(--border2);
+    background: var(--bg3);
+  }
+  .project-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem; }
+  .project-title { font-size: 15px; font-weight: 500; color: #fff; }
+  .project-links { display: flex; gap: 8px; flex-shrink: 0; }
+  .project-links a {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    transition: all 0.15s;
+  }
+  .project-links a:hover { color: var(--accent2); border-color: var(--accent); }
+  .project-desc { font-size: 13.5px; color: var(--muted); margin-bottom: 0.75rem; line-height: 1.65; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 0.6rem; }
+  .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 4px;
+    background: var(--bg3);
+    color: var(--muted);
+    border: 1px solid var(--border);
+  }
+  .tag.hl { background: var(--accent-bg); color: var(--accent2); border-color: rgba(124,111,245,0.2); }
+  .metric {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--green);
+    background: var(--green-bg);
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 6px;
+    margin-bottom: 4px;
+  }
+
+  /* EXPERIENCE */
+  .exp-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .exp-item {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-date { font-family: var(--mono); font-size: 12px; color: var(--muted); line-height: 1.5; padding-top: 2px; }
+  .exp-company { font-size: 13px; color: var(--accent2); margin-top: 4px; }
+  .exp-role { font-size: 15px; font-weight: 500; color: #fff; margin-bottom: 4px; }
+  .exp-bullets { list-style: none; padding: 0; margin-top: 0.6rem; }
+  .exp-bullets li {
+    font-size: 13.5px; color: var(--muted);
+    padding-left: 1.2em;
+    position: relative;
+    margin-bottom: 6px;
+    line-height: 1.65;
+  }
+  .exp-bullets li::before {
+    content: '→';
+    position: absolute; left: 0;
+    color: var(--accent);
+    font-size: 12px;
+  }
+
+  /* ACADEMICS */
+  .edu-grid { display: flex; flex-direction: column; gap: 1rem; }
+  .edu-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;
+  }
+  .edu-deg { font-size: 15px; font-weight: 500; color: #fff; }
+  .edu-inst { font-size: 13px; color: var(--accent2); margin-top: 4px; }
+  .edu-year { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .gpa-badge {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--green);
+    background: var(--green-bg);
+    padding: 4px 12px;
+    border-radius: 6px;
+  }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .skill-group {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.1rem 1.25rem;
+  }
+  .skill-group-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+  }
+  .skill-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 5px;
+    background: var(--bg3);
+    color: var(--muted);
+    border: 1px solid var(--border);
+  }
+
+  /* ACHIEVEMENTS */
+  .ach-list { display: flex; flex-direction: column; gap: 0.75rem; }
+  .ach-item {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    font-size: 14px; color: var(--muted);
+    padding: 0.9rem 1.25rem;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    line-height: 1.6;
+  }
+  .ach-item span.bullet {
+    color: var(--amber);
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  strong.hi { color: #fff; font-weight: 500; }
+
+  /* CONTACT */
+  #contact { padding-bottom: 5rem; }
+  .contact-box {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+  }
+  .contact-box h3 { font-size: 1.4rem; color: #fff; margin-bottom: 0.5rem; }
+  .contact-box p { color: var(--muted); font-size: 14px; margin-bottom: 1.5rem; }
+  .contact-btns { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.75rem; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 9px 20px;
+    border-radius: 7px;
+    font-size: 13px; font-weight: 500;
+    transition: all 0.2s;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    border: 1px solid var(--accent);
+  }
+  .btn-primary:hover { background: var(--accent2); border-color: var(--accent2); color: #111; }
+  .btn-ghost {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border2);
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent2); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding: 1.5rem 2rem;
+    font-size: 12px;
+    color: var(--muted);
+    font-family: var(--mono);
+  }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 1rem; }
+    main { padding: 0 1rem; }
+    .nav-links { gap: 1rem; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.25rem; }
+    .hero-name { font-size: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-name">sameer_anand_jha</span>
+  <div class="nav-links">
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#academics">Academics</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section id="hero">
+    <p class="hero-eyebrow">AI Engineer · IIT Bombay</p>
+    <h1 class="hero-name">Sameer<br /><span>Anand Jha</span></h1>
+    <p class="hero-bio">
+      Building deployable AI systems at the intersection of Computer Vision, Agentic AI, and NLP.
+      MTech @ IIT Bombay. Published at MIDOG 2025 (MICCAI). Previously at Uniphore.
+    </p>
+    <div class="hero-links">
+      <a href="https://github.com/Sameer-Anand-Jha" target="_blank">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        GitHub
+      </a>
+      <a href="https://linkedin.com/in/sameer-anand-jha-91749917a" target="_blank">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="mailto:sameeranandjhaofficial@gmail.com">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/></svg>
+        Email
+      </a>
+      <a href="https://huggingface.co" target="_blank">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path fill="var(--bg)" d="M8 13s1 2 4 2 4-2 4-2M9.5 9h.01M14.5 9h.01"/></svg>
+        HuggingFace Spaces
+      </a>
+    </div>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-val">9.04</div><div class="stat-label">MTech GPA · IIT Bombay</div></div>
+      <div class="stat"><div class="stat-val">99.34%ile</div><div class="stat-label">GATE 2024 CS</div></div>
+      <div class="stat"><div class="stat-val">1 pub</div><div class="stat-label">MIDOG 2025 · MICCAI</div></div>
+      <div class="stat"><div class="stat-val">2+ yrs</div><div class="stat-label">Industry (Uniphore)</div></div>
+    </div>
+  </section>
+
+  <!-- PUBLICATION -->
+  <section id="publication">
+    <div class="section-label">Publication</div>
+    <div class="pub-banner">
+      <div class="pub-icon">📄</div>
+      <div>
+        <div class="pub-title">
+          Mix, Align, Distil: Reliable Cross-Domain Atypical Mitosis Classification
+          <span class="pub-tag">arXiv 2025</span>
+        </div>
+        <div class="pub-meta">MIDOG 2025 Workshop · MICCAI event · Domain generalization for medical imaging</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label">Projects</div>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-title">Atypical Mitosis Classification</div>
+          <div class="project-links">
+            <a href="https://github.com/Sameer-Anand-Jha" target="_blank">↗ GitHub</a>
+          </div>
+        </div>
+        <p class="project-desc">Domain-generalization pipeline for cross-domain atypical mitosis classification. Lightweight 22 MB DenseNet-121 backbone with Mix-style augmentation, Attention, Knowledge Distillation, and EMA Teacher — zero inference-time overhead.</p>
+        <div>
+          <span class="metric">+10.4% accuracy</span>
+          <span class="metric">+23.6% specificity</span>
+          <span class="metric">0.9499 ROC-AUC</span>
+        </div>
+        <div class="tag-row">
+          <span class="tag hl">PyTorch</span><span class="tag hl">DenseNet-121</span>
+          <span class="tag">Knowledge Distillation</span><span class="tag">Domain Generalization</span><span class="tag">Computer Vision</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-title">Multimodal Scene Analysis Agent</div>
+          <div class="project-links">
+            <a href="https://huggingface.co" target="_blank">↗ Demo</a>
+            <a href="https://github.com/Sameer-Anand-Jha" target="_blank">↗ GitHub</a>
+          </div>
+        </div>
+        <p class="project-desc">Production agentic AI system using LangChain ReAct + Llama 3.1 8B/Groq that orchestrates three specialized tools: BLIP-2 vision captioning, FAISS RAG over a local knowledge base, and DuckDuckGo web search. Full reasoning trace UI deployed on HuggingFace Spaces.</p>
+        <div class="tag-row">
+          <span class="tag hl">LangChain</span><span class="tag hl">Llama 3.1</span>
+          <span class="tag">BLIP-2</span><span class="tag">FAISS</span><span class="tag">RAG</span><span class="tag">Gradio</span><span class="tag">HuggingFace Spaces</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-title">Call Centre Analytics Dashboard</div>
+          <div class="project-links">
+            <a href="https://huggingface.co" target="_blank">↗ Demo</a>
+            <a href="https://github.com/Sameer-Anand-Jha" target="_blank">↗ GitHub</a>
+          </div>
+        </div>
+        <p class="project-desc">Multi-task agentic NLP system for BFSI call transcript analysis — intent classification, dual-speaker sentiment, NER, RAG-grounded compliance flagging, and agent quality scoring. SQLite + MLflow tracking. 4-tab Gradio dashboard on HuggingFace Spaces.</p>
+        <div class="tag-row">
+          <span class="tag hl">LangChain</span><span class="tag hl">Groq</span>
+          <span class="tag">NLP</span><span class="tag">MLflow</span><span class="tag">SQLite</span><span class="tag">Gradio</span><span class="tag">BFSI</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-title">Text Classification — DistilBERT on AG News</div>
+          <div class="project-links">
+            <a href="https://huggingface.co" target="_blank">↗ Demo</a>
+            <a href="https://github.com/Sameer-Anand-Jha" target="_blank">↗ GitHub</a>
+          </div>
+        </div>
+        <p class="project-desc">Fine-tuned DistilBERT on 120K samples from AG News. Deployed as a containerised FastAPI service on GCP Cloud Run with CPU inference. Full MLOps pipeline with MLflow experiment tracking and model registry.</p>
+        <div>
+          <span class="metric">94.5% accuracy</span>
+          <span class="metric">94.5% weighted F1</span>
+          <span class="metric">&lt;50ms latency</span>
+        </div>
+        <div class="tag-row">
+          <span class="tag hl">DistilBERT</span><span class="tag hl">FastAPI</span>
+          <span class="tag">GCP Cloud Run</span><span class="tag">Docker</span><span class="tag">MLflow</span><span class="tag">HuggingFace</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-title">Automated Classroom Attendance</div>
+          <div class="project-links">
+            <a href="https://github.com/Sameer-Anand-Jha" target="_blank">↗ GitHub</a>
+          </div>
+        </div>
+        <p class="project-desc">Real-time attendance system using InsightFace (SCRFD detector + ArcFace recognizer) via ONNX Runtime. Multi-scale detection, CLAHE enhancements, NMS and deduplication for robust small-face recognition in crowded classroom settings.</p>
+        <div>
+          <span class="metric">100% validation accuracy</span>
+        </div>
+        <div class="tag-row">
+          <span class="tag hl">InsightFace</span><span class="tag hl">ONNX Runtime</span>
+          <span class="tag">ArcFace</span><span class="tag">SCRFD</span><span class="tag">OpenCV</span><span class="tag">Computer Vision</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-title">Smart Voice Conversational Agent</div>
+          <div class="project-links">
+            <a href="https://github.com/Sameer-Anand-Jha" target="_blank">↗ GitHub</a>
+          </div>
+        </div>
+        <p class="project-desc">Real-time voice AI agent built with LiveKit, featuring intelligent interruption handling using VAD and STT-driven state logic. RAG pipeline using FAISS and sentence embeddings for low-latency, knowledge-grounded speech generation.</p>
+        <div class="tag-row">
+          <span class="tag hl">LiveKit</span><span class="tag hl">FAISS</span>
+          <span class="tag">VAD</span><span class="tag">STT</span><span class="tag">RAG</span><span class="tag">Voice AI</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-title">Image Super-Resolution via Vision Transformer</div>
+          <div class="project-links">
+            <a href="https://github.com/Sameer-Anand-Jha" target="_blank">↗ GitHub</a>
+          </div>
+        </div>
+        <p class="project-desc">Low-to-High Multi-Level ViT for single-image super-resolution on a custom gaming image dataset. Hierarchical feature extraction across progressive resolutions, evaluated on a composite PSNR + SSIM metric.</p>
+        <div>
+          <span class="metric">+20.7% over CNN baseline</span>
+        </div>
+        <div class="tag-row">
+          <span class="tag hl">Vision Transformer</span><span class="tag hl">PyTorch</span>
+          <span class="tag">Super-Resolution</span><span class="tag">PSNR</span><span class="tag">SSIM</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-label">Work Experience</div>
+    <div class="exp-list">
+      <div class="exp-item">
+        <div>
+          <div class="exp-date">Oct 2023 – Jun 2024</div>
+          <div class="exp-company">Uniphore</div>
+        </div>
+        <div>
+          <div class="exp-role">Associate Product Delivery Specialist</div>
+          <ul class="exp-bullets">
+            <li>Built end-to-end NLP pipelines over 20,000+ ASR call transcripts to automate vocabulary generation, key phrase extraction, and improve speech recognition accuracy for banking and retail enterprise clients.</li>
+            <li>Designed rule-based intent classification and resolution-routing workflows for conversational AI systems, collaborating cross-functionally to reduce unnecessary escalations.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div>
+          <div class="exp-date">Jul 2022 – Sep 2023</div>
+          <div class="exp-company">Uniphore</div>
+        </div>
+        <div>
+          <div class="exp-role">Associate Business Analyst</div>
+          <ul class="exp-bullets">
+            <li>Led UAT and production deployment of conversational AI workflows for enterprise clients including Coles, Kotak, and Paytm — maintaining information capture accuracy above 90% across high-traffic voice channels.</li>
+            <li>Translated functional requirements into production-ready dialogue configurations.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACADEMICS -->
+  <section id="academics">
+    <div class="section-label">Academics</div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div>
+          <div class="edu-deg">MTech, Electrical Engineering</div>
+          <div class="edu-inst">Indian Institute of Technology (IIT), Bombay</div>
+          <div class="edu-year" style="margin-top:6px">2024 – 2026</div>
+        </div>
+        <div class="gpa-badge">9.04 GPA</div>
+      </div>
+      <div class="edu-card">
+        <div>
+          <div class="edu-deg">BE, Electronics & Telecommunications</div>
+          <div class="edu-inst">IET, DAVV, Indore</div>
+          <div class="edu-year" style="margin-top:6px">2018 – 2022</div>
+        </div>
+        <div class="gpa-badge">8.42 GPA</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-label">Skills</div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">Languages</div>
+        <div class="skill-chips">
+          <span class="chip">Python</span><span class="chip">C++</span><span class="chip">C</span><span class="chip">SQL</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">ML / DL Frameworks</div>
+        <div class="skill-chips">
+          <span class="chip">PyTorch</span><span class="chip">Scikit-learn</span><span class="chip">HuggingFace</span><span class="chip">OpenCV</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Agentic AI & NLP</div>
+        <div class="skill-chips">
+          <span class="chip">LangChain</span><span class="chip">LangGraph</span><span class="chip">RAG</span><span class="chip">FAISS</span><span class="chip">MCP</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">MLOps & Deployment</div>
+        <div class="skill-chips">
+          <span class="chip">Docker</span><span class="chip">MLflow</span><span class="chip">ONNX</span><span class="chip">FastAPI</span><span class="chip">GCP</span><span class="chip">Gradio</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements">
+    <div class="section-label">Achievements</div>
+    <div class="ach-list">
+      <div class="ach-item">
+        <span class="bullet">★</span>
+        <span>Scored <strong class="hi">99.34 percentile in GATE 2024 CS</strong> (rank 810 / 123,967) and <strong class="hi">98.8 percentile in GATE 2024 DA</strong> (rank 465 / 39,210).</span>
+      </div>
+      <div class="ach-item">
+        <span class="bullet">★</span>
+        <span>Published at <strong class="hi">MIDOG 2025 Workshop (MICCAI)</strong> — Mix, Align, Distil: Reliable Cross-Domain Atypical Mitosis Classification.</span>
+      </div>
+      <div class="ach-item">
+        <span class="bullet">★</span>
+        <span>Teaching Assistant for <strong class="hi">Introduction to Machine Learning</strong> (250+ students) and <strong class="hi">Introduction to Data Science</strong> (100+ students) at IIT Bombay.</span>
+      </div>
+      <div class="ach-item">
+        <span class="bullet">★</span>
+        <span>Nominated as <strong class="hi">Best Student Companion</strong> from the Department of Electrical Engineering, IIT Bombay. Mentored 30+ freshers under the ISCP programme.</span>
+      </div>
+      <div class="ach-item">
+        <span class="bullet">★</span>
+        <span>Presented paper on Automated Pill Dispenser at <strong class="hi">ICICES, DAVV 2023</strong> (International Conference on Innovation and Challenges in Engineering Sciences).</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label">Get in touch</div>
+    <div class="contact-box">
+      <h3>Let's connect</h3>
+      <p>Open to research collaborations, full-time roles in AI/ML, and interesting conversations.</p>
+      <div class="contact-btns">
+        <a href="mailto:sameeranandjhaofficial@gmail.com" class="btn btn-primary">✉ sameeranandjhaofficial@gmail.com</a>
+        <a href="https://linkedin.com/in/sameer-anand-jha-91749917a" target="_blank" class="btn btn-ghost">LinkedIn</a>
+        <a href="https://github.com/Sameer-Anand-Jha" target="_blank" class="btn btn-ghost">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  built with HTML · hosted on GitHub Pages · sameer-anand-jha.github.io
+</footer>
+
+</body>
+</html>
