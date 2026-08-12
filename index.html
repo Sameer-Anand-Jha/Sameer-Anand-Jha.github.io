@@ -114,8 +114,8 @@
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     background: rgba(5,7,15,0.6);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
     border-bottom: 1px solid var(--border);
     padding: 0 2rem;
     height: 54px;
@@ -978,20 +978,23 @@
   var canvas = document.getElementById('hero-canvas');
   var ctx = canvas.getContext('2d');
   var hero = document.getElementById('hero');
-  var W, H, DPR = Math.min(window.devicePixelRatio || 1, 2);
+  var W, H, DPR = Math.min(window.devicePixelRatio || 1, 1.5);
   var nodes = [];
   var mouse = { x: -9999, y: -9999 };
   var NODE_COUNT;
+  var heroVisible = true;
+  var rafId = null;
 
-  function lineColor() {
-    return getComputedStyle(root).getPropertyValue('--node-line').trim();
+  // Colors are read from CSS once and cached, not on every frame,
+  // getComputedStyle is expensive and this loop runs at 60fps.
+  var palette = { lc: '90,140,255', lch: '69,214,234', fc: '160,190,255' };
+  function refreshPalette() {
+    var cs = getComputedStyle(root);
+    palette.lc = cs.getPropertyValue('--node-line').trim();
+    palette.lch = cs.getPropertyValue('--node-line-hover').trim();
+    palette.fc = cs.getPropertyValue('--node-fill').trim();
   }
-  function lineColorHover() {
-    return getComputedStyle(root).getPropertyValue('--node-line-hover').trim();
-  }
-  function fillColor() {
-    return getComputedStyle(root).getPropertyValue('--node-fill').trim();
-  }
+  refreshPalette();
 
   function resize() {
     W = window.innerWidth;
@@ -1015,9 +1018,10 @@
   }
 
   function step() {
+    if (!heroVisible) { rafId = null; return; }
     ctx.clearRect(0, 0, W, H);
     var maxLinkDist = 120;
-    var lc = lineColor(), lch = lineColorHover(), fc = fillColor();
+    var lc = palette.lc, lch = palette.lch, fc = palette.fc;
 
     for (var i = 0; i < nodes.length; i++) {
       var n = nodes[i];
@@ -1070,7 +1074,7 @@
       ctx.fill();
     }
 
-    if (!reduceMotion) requestAnimationFrame(step);
+    if (!reduceMotion) { rafId = requestAnimationFrame(step); }
   }
 
   window.addEventListener('resize', resize);
@@ -1083,11 +1087,26 @@
     mouse.x = -9999; mouse.y = -9999;
   });
 
+  // Stop the animation loop entirely once the hero scrolls out of view,
+  // and restart it when it scrolls back in.
+  if ('IntersectionObserver' in window) {
+    var heroIo = new IntersectionObserver(function (entries) {
+      heroVisible = entries[0].isIntersecting;
+      if (heroVisible && !reduceMotion && rafId === null) {
+        rafId = requestAnimationFrame(step);
+      }
+    }, { threshold: 0.01 });
+    heroIo.observe(hero);
+  }
+
+  // Re-cache colors only when the theme actually changes.
+  toggleBtn.addEventListener('click', refreshPalette);
+
   resize();
   if (reduceMotion) {
     step();
   } else {
-    requestAnimationFrame(step);
+    rafId = requestAnimationFrame(step);
   }
 })();
 </script>
